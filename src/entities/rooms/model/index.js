@@ -1,25 +1,16 @@
 import GenericModel from "@Application/repository/generic-model";
 import Schema from "./schema";
-import playerSchema from "entities/players/model/schema"
-import playerRoomSchema from "entities/playerRooms/model/schema"
+import playerModel from "entities/players/model"
+import questionModel from "entities/questions/model"
 
-Schema.belongsToMany(playerSchema, {
-  through: playerRoomSchema,
-  foreignKey: "roomId"
-})
+Schema.associate = () => {
+  Schema.hasMany(playerModel, {onDelete: "CASCADE"})
+  Schema.hasMany(questionModel, {onDelete: "CASCADE"})
+}
 
 const Model = {
   ...GenericModel(Schema),
   getByEmail: (email) => Schema.findOne({ where: { email } }),
-  getPlayers: async (roomId) => {
-    const room = await Schema.findByPk(roomId, {
-      include: {
-        model: playerSchema,
-        through: { attributes: [] }, // Exclude join table attributes
-      },
-    });
-    return room ? room.players : [];
-  }
 };
 
 export default Model;

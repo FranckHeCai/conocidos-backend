@@ -5,5 +5,7 @@ export default db.define("answers", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  isCorrect: DataTypes.BOOLEAN,
+  is_correct: {
+    type: DataTypes.BOOLEAN,
+  },
 });
