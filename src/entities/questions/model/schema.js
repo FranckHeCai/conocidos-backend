@@ -5,4 +5,5 @@ export default db.define("questions", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+
 });

@@ -26,10 +26,10 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { answer_text, isCorrect },
+      body: { playerId, questionId },
     } = req;
-    await Controller.create({ answer_text, isCorrect });
-    res.send("Respuesta creada con creado con éxito!!");
+    await Controller.create({ playerId, questionId });
+    res.send(`Pregunta ${questionId} asignada a Player ${playerId} con éxito!!`);
   })
 );
 

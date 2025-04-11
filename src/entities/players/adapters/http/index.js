@@ -22,14 +22,22 @@ router.get(
   })
 );
 
+router.get(
+  "/players-in-room/:roomId",
+  asyncHandler(async (req, res) => {
+    const data = await Controller.get();
+    res.send(data);
+  })
+);
+
 router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { email, username, password },
+      body: { nickname, avatar, score },
     } = req;
-    await Controller.create({ email, username, password });
-    res.send("Usuario creado con éxito!!");
+    await Controller.create({ nickname, avatar, score });
+    res.send("Jugador creado con éxito!!");
   })
 );
 

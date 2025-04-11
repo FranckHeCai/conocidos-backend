@@ -26,9 +26,9 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { text },
+      body: { question_text },
     } = req;
-    await Controller.create({ text });
+    await Controller.create({ question_text });
     res.send("Pregunta Añadida con éxito!!");
   })
 );

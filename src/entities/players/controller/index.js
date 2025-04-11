@@ -15,6 +15,9 @@ const Controller = {
   },
   deleteById(id) {
     return Model.deleteById(id);
+  },
+  getQuestions(playerId) {
+    return Model.getQuestions(playerId)
   }
 }
 

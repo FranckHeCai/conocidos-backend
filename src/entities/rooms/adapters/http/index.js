@@ -26,11 +26,21 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { email, username, password },
+      body: { code, isReady },
     } = req;
-    await Controller.create({ email, username, password });
-    res.send("Usuario creado con éxito!!");
+    await Controller.create({ code, isReady });
+    res.send("Sala creada con éxito!!");
   })
 );
+
+router.get("/players",
+  asyncHandler(async (req, res) => {
+    const {
+      params: { roomId }
+    } = req
+    const data = await Controller.getPlayers(roomId);
+    res.send(data);
+  })
+)
 
 export default (app, entityUrl) => app.use(entityUrl, router);
