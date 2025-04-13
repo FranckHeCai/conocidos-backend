@@ -2,7 +2,7 @@ import { db, DataTypes } from "@Application/database";
 
 export default db.define("rooms", {
   code: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true
   },

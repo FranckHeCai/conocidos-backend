@@ -5,12 +5,16 @@ export default db.define("players", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  avatar: {
+    type: DataTypes.STRING,
+    defaultValue: "zombie.png"
+  },
   score: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
   roomId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     references: {
       model: "rooms",

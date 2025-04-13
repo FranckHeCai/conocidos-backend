@@ -6,7 +6,7 @@ export default db.define("questions", {
     allowNull: false,
   },
   roomId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     references: {
       model: "rooms",
