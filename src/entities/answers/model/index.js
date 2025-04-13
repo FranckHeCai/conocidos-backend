@@ -3,7 +3,10 @@ import Schema from "./schema";
 import questionModel from "entities/questions/model"
 
 Schema.associate = () => {
-  Schema.belongsTo(questionModel)
+  Schema.belongsTo(questionModel, {
+    foreignKey: "questionId",
+    onDelete: "CASCADE",
+  })
 }
 
 const Model = {

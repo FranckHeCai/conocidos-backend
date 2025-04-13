@@ -1,9 +1,8 @@
 import { db, DataTypes } from "@Application/database";
-import playerModel from "entities/players/model/"
 
 export default db.define("rooms", {
   code: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
     unique: true
   },

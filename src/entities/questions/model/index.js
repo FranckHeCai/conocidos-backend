@@ -1,16 +1,25 @@
 import GenericModel from "@Application/repository/generic-model";
 import Schema from "./schema";
-import answerModel from "entities/answers/model"
-import roomModel from "entities/rooms/model"
-import playerModel from "entities/players/model"
+import answerModel from "entities/answers/model";
+import roomModel from "entities/rooms/model";
+import playerModel from "entities/players/model";
 
-Schema.associate = () =>{
-  Schema.belongsTo(roomModel)
+Schema.associate = () => {
+  Schema.belongsTo(roomModel, {
+    foreignKey: "roomId",
+    onDelete: "CASCADE",
+  });
+
   Schema.belongsTo(playerModel, {
-    foreignKey: "id"
-  })
-  Schema.hasMany(answerModel, { onDelete: "CASCADE" })
-}
+    foreignKey: "playerId",
+    onDelete: "SET NULL",
+  });
+
+  Schema.hasMany(answerModel, {
+    foreignKey: "questionId",
+    onDelete: "CASCADE",
+  });
+};
 
 const Model = {
   ...GenericModel(Schema),

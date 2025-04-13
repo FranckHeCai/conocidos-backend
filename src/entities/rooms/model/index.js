@@ -4,8 +4,14 @@ import playerModel from "entities/players/model"
 import questionModel from "entities/questions/model"
 
 Schema.associate = () => {
-  Schema.hasMany(playerModel, {onDelete: "CASCADE"})
-  Schema.hasMany(questionModel, {onDelete: "CASCADE"})
+  Schema.hasMany(playerModel, {
+    foreignKey: "roomId", 
+    onDelete: "CASCADE"
+  })
+  Schema.hasMany(questionModel, {
+    foreignKey: "roomId", 
+    onDelete: "CASCADE"
+  })
 }
 
 const Model = {

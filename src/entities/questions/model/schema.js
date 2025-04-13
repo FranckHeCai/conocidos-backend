@@ -5,5 +5,22 @@ export default db.define("questions", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
+  roomId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: "rooms",
+      key: "code",
+    },
+    onDelete: "CASCADE",
+  },
+  playerId: {
+    type: DataTypes.INTEGER,
+    allowNull: false, 
+    references: {
+      model: "players", 
+      key: "id", 
+    },
+    onDelete: "SET NULL", 
+  },
 });

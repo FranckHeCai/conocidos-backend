@@ -1,7 +1,7 @@
 import { db, DataTypes } from "@Application/database";
 
 export default db.define("players", {
-  name: {
+  nickname: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -12,5 +12,9 @@ export default db.define("players", {
   roomId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  },
+    references: {
+      model: "rooms",
+      key: "code", 
+    },
+  }
 });

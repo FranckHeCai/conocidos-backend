@@ -5,11 +5,17 @@ import questionModel from "entities/questions/model"
 import answerModel from "entities/answers/model"
 
 Schema.associate = () =>{
-  Schema.belongsTo(roomModel)
-  Schema.hasMany(answerModel, { onDelete:"CASCADE" })
+  Schema.belongsTo(roomModel, {
+    foreignKey: "roomId",
+    onDelete: "CASCADE",
+  })
+  Schema.hasMany(answerModel, {
+    foreignKey: "playerId", 
+    onDelete:"CASCADE", 
+  })
   Schema.hasMany(questionModel, { 
-    foreignKey: "id",
-    onDelete: "SET NULL"
+    foreignKey: "playerId",
+    onDelete: "SET DELETE"
   })
 }
 

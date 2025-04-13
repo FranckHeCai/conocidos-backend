@@ -8,4 +8,13 @@ export default db.define("answers", {
   is_correct: {
     type: DataTypes.BOOLEAN,
   },
+  questionId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: "questions",
+      key: "id", 
+    },
+    onDelete: "CASCADE",
+  },
 });
