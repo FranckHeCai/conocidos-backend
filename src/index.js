@@ -14,7 +14,7 @@ import Documentation from "./application/documentation";
 import ConnectDatabase from "./application/database";
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = new Server(server, config);
 

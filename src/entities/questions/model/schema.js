@@ -6,7 +6,7 @@ export default db.define("questions", {
     allowNull: false,
   },
   roomId: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(10),
     allowNull: false,
     references: {
       model: "rooms",
@@ -21,6 +21,6 @@ export default db.define("questions", {
       model: "players", 
       key: "id", 
     },
-    onDelete: "SET NULL", 
+    onDelete: "CASCADE", 
   },
 });

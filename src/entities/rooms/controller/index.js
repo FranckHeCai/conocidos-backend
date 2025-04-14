@@ -16,8 +16,8 @@ const Controller = {
   deleteById(id) {
     return Model.deleteById(id);
   },
-  getPlayers(roomId) {
-    return Model.getPlayers(roomId)
+  update(code, data){
+    return Model.update(code, data);
   }
 }
 

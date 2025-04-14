@@ -1,3 +1,4 @@
+import { where } from "sequelize";
 
 const GenericModel = Model => ({
     create(data) {
@@ -12,11 +13,17 @@ const GenericModel = Model => ({
     updateById(id, data) {
         return Model.update(data, { where: { id } });
     },
+    update(code, data) {
+        return Model.update(data, { where: { code } });
+    },
     deleteById(id) {
         return Model.destroy({ where: { id } });
     },
     findOrCreate(condition, newObj){
         return Model.findOrCreate({where:condition, defaults: newObj});
+    },
+    updatePlayer(id, data){
+        return Model.update(data, {where: id})
     }
 });
 

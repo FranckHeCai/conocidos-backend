@@ -25,12 +25,13 @@ export const setAssociations = (db) => {
 
 export default async (onConnect) => {
     try {
-        await setAssociations(db);
+        setAssociations(db);
         await db.authenticate();
         await db.sync({ force: forceCleanDatabase });
         onConnect();
         console.log('Database connection OK!');
     } catch (error) {
-        console.log('Unable to connect to the database:');
+        console.log('Unable to connect to the database:', error.message);
+        console.log(error)
     }
 }

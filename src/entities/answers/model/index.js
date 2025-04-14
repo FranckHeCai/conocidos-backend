@@ -1,6 +1,6 @@
 import GenericModel from "@Application/repository/generic-model";
 import Schema from "./schema";
-import questionModel from "entities/questions/model"
+import questionModel from "entities/questions/model/schema"
 
 Schema.associate = () => {
   Schema.belongsTo(questionModel, {

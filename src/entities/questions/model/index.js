@@ -1,8 +1,8 @@
 import GenericModel from "@Application/repository/generic-model";
 import Schema from "./schema";
-import answerModel from "entities/answers/model";
-import roomModel from "entities/rooms/model";
-import playerModel from "entities/players/model";
+import answerModel from "entities/answers/model/schema";
+import roomModel from "entities/rooms/model/schema";
+import playerModel from "entities/players/model/schema";
 
 Schema.associate = () => {
   Schema.belongsTo(roomModel, {
@@ -12,7 +12,7 @@ Schema.associate = () => {
 
   Schema.belongsTo(playerModel, {
     foreignKey: "playerId",
-    onDelete: "SET NULL",
+    onDelete: "CASCADE",
   });
 
   Schema.hasMany(answerModel, {

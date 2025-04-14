@@ -22,14 +22,32 @@ router.get(
   })
 );
 
+router.get(
+  "/question/:questionId",
+  asyncHandler(async (req, res) => {
+    const { questionId } = req.params
+    if(!questionId){
+      return res.status(400).send({error: "questionId is required"})
+    }
+
+    const data = await Controller.get({questionId});
+
+    if(!data || data.length === 0){
+      return res.status(404).send({error: "No answers found for the given questionId"})
+    }
+
+    res.send(data);
+  })
+);
+
 router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { answer_text, isCorrect },
+      body: { answer_text, is_correct, questionId },
     } = req;
-    await Controller.create({ answer_text, isCorrect });
-    res.send("Respuesta creada con creado con éxito!!");
+    await Controller.create({ answer_text ,is_correct, questionId });
+    res.send(`Respuesta de pregunta ${questionId} creada con éxito!!`);
   })
 );
 

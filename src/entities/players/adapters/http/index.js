@@ -22,10 +22,39 @@ router.get(
   })
 );
 
-router.get(
-  "/players-in-room/:roomId",
+router.put("/update/:playerId",
   asyncHandler(async (req, res) => {
-    const data = await Controller.get();
+    const { playerId } = req.params;
+    const updateData = req.body
+    if (!playerId) {
+      return res.status(400).send({ error: "playerId is required" });
+    }
+
+    const data = await Controller.updatePlayer({ id:playerId }, updateData);
+
+    if (data[0] === 0) {
+      return res.status(404).send({ error: `Player with id ${playerId} not found` });
+    }
+
+    res.send({ message: `Player with id ${playerId} updated successfully` });
+  })
+)
+
+router.get(
+  "/:roomId",
+  asyncHandler(async (req, res) => {
+    const { roomId } = req.params;
+
+    if (!roomId) {
+      return res.status(400).send({ error: "roomId is required" });
+    }
+
+    const data = await Controller.get({ roomId });
+
+    if (!data || data.length === 0) {
+      return res.status(404).send({ error: "No players found for the given roomId" });
+    }
+
     res.send(data);
   })
 );
@@ -34,10 +63,10 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { nickname, avatar, score },
+      body: { nickname, avatar, score, roomId },
     } = req;
-    await Controller.create({ nickname, avatar, score });
-    res.send("Jugador creado con éxito!!");
+    await Controller.create({ nickname, avatar, score, roomId });
+    res.send(`Jugador creado y asignado a sala ${roomId} con éxito!!`);
   })
 );
 

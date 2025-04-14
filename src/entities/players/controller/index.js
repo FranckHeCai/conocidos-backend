@@ -16,8 +16,8 @@ const Controller = {
   deleteById(id) {
     return Model.deleteById(id);
   },
-  getQuestions(playerId) {
-    return Model.getQuestions(playerId)
+  updatePlayer(playerId, data){
+    return Model.updatePlayer(playerId, data)
   }
 }
 
