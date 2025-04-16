@@ -19,6 +19,9 @@ const GenericModel = Model => ({
     deleteById(id) {
         return Model.destroy({ where: { id } });
     },
+    delete(conditions){
+        return Model.destroy(conditions ? {where:conditions} : {})
+    },
     findOrCreate(condition, newObj){
         return Model.findOrCreate({where:condition, defaults: newObj});
     },

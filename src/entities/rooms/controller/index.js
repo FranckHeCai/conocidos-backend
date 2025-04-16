@@ -16,6 +16,9 @@ const Controller = {
   deleteById(id) {
     return Model.deleteById(id);
   },
+  delete(conditions){
+    return Model.delete(conditions)
+  },
   update(code, data){
     return Model.update(code, data);
   }

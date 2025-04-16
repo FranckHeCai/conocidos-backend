@@ -14,6 +14,24 @@ const router = express.Router();
 //   })
 // );
 
+router.delete("/delete/:code",
+  asyncHandler(async (req, res) => {
+    const { code } = req.params;
+
+    if (!code) {
+      return res.status(400).send({ error: "Code is required" });
+    }
+
+    const data = await Controller.delete({code})
+
+    if (data[0] === 0) {
+      return res.status(404).send({ error: `Room with code ${code} not found` });
+    }
+
+    res.send({ message: `Room with code ${code} deleted successfully` });
+  })
+)
+
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -54,8 +72,18 @@ router.post(
     const {
       body: { code, isReady },
     } = req;
-    await Controller.create({ code, isReady });
-    res.send(`Sala con codigo ${code} creada con éxito!!`);
+
+    const roomExists = await Controller.get({code})
+    
+    if(roomExists.length === 0){
+      await Controller.create({ code, isReady });
+      res.send(`Sala con codigo ${code} creada con éxito!!`);
+    } else 
+      {
+        res.status(400).send("Room already exists")
+      }
+
+    
   })
 );
 

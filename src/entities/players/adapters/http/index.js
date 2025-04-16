@@ -22,6 +22,24 @@ router.get(
   })
 );
 
+router.delete("/delete/:playerId",
+  asyncHandler(async (req, res) => {
+    const { playerId } = req.params;
+
+    if (!playerId) {
+      return res.status(400).send({ error: "playerId is required" });
+    }
+
+    const data = await Controller.deleteById(playerId)
+
+    if (data[0] === 0) {
+      return res.status(404).send({ error: `Player with id ${playerId} not found` });
+    }
+
+    res.send({ message: `Player with id ${playerId} deleted successfully` });
+  })
+)
+
 router.put("/update/:playerId",
   asyncHandler(async (req, res) => {
     const { playerId } = req.params;
@@ -65,6 +83,13 @@ router.post(
     const {
       body: { nickname, avatar, score, roomId },
     } = req;
+
+    const roomExist = await Controller.getRoom(roomId)
+    if(roomExist.length === 0){
+      console.log(roomExist)
+      return res.status(400).send("Room does not exist")
+    }
+
     await Controller.create({ nickname, avatar, score, roomId });
     res.send(`Jugador creado y asignado a sala ${roomId} con éxito!!`);
   })
