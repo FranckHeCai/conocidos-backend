@@ -1,6 +1,7 @@
 import express from "express";
 import Controller from "../../controller";
 import { asyncHandler } from "@Application/middlewares/error-handler";
+import playerController from "entities/players/controller"
 // Para operaciones con acceso restringido, introduciremos un segundo parámetro que será la variable restrictedAccess
 import restrictedAccess from "@Application/middlewares/restricted-access";
 
@@ -70,13 +71,14 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { code, isReady },
+      body: { code, isReady, player },
     } = req;
-
+    const {nickname, avatar, score, roomId} = player
     const roomExists = await Controller.get({code})
     
     if(roomExists.length === 0){
       await Controller.create({ code, isReady });
+      await playerController.create({nickname, avatar, score, code})
       res.send(`Sala con codigo ${code} creada con éxito!!`);
     } else 
       {
