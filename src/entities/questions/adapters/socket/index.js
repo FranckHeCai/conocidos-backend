@@ -2,7 +2,7 @@ import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
 
 const StartSocketServer = (io, socket) => {
-  console.log("StartSocketServer");
+  console.log("Question socket active");
   socket.on(
     "alguienTermino",
     socketHandler(async (msg) => {

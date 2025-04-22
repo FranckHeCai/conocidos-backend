@@ -34,6 +34,15 @@ router.delete("/delete/:code",
 )
 
 router.get(
+  "/:roomId",
+  asyncHandler(async (req, res) => {
+    const { roomId } = req.params;
+    const data = await Controller.get({code: roomId});
+    res.send(data);
+  })
+);
+
+router.get(
   "/",
   asyncHandler(async (req, res) => {
     const data = await Controller.get();
@@ -78,7 +87,7 @@ router.post(
     
     if(roomExists.length === 0){
       await Controller.create({ code, isReady });
-      await playerController.create({nickname, avatar, score, code})
+      await playerController.create({nickname, avatar, score, roomId: code})
       res.send(`Sala con codigo ${code} creada con éxito!!`);
     } else 
       {

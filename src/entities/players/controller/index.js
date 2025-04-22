@@ -18,13 +18,14 @@ const Controller = {
   deleteById(id) {
     return Model.deleteById(id);
   },
+  delete(conditions) {
+    return Model.delete(conditions)
+  },
   updatePlayer(playerId, data){
     return Model.updatePlayer(playerId, data)
   },
   async getRoom(code){
-  console.log(1111111111111)
     const data = await roomController.get({code});
-    console.log(2222222222)
     return data;
   }
 }
