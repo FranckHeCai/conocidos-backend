@@ -24,7 +24,7 @@ ConnectDatabase(() => {
   Routes(app);
 
   io.on("connection", (socket) => {
-    console.log(88);
+    console.log("Connection on socket active");
     Sockets(io, socket);
   });
 
