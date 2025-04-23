@@ -10,4 +10,6 @@ export default db.define("rooms", {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   },
+  // maxPlayers: DataTypes.INTEGER,
+  // maxQuestions: DataTypes.INTEGER
 });

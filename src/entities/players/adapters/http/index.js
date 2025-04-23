@@ -90,9 +90,7 @@ router.post(
       console.log(roomExist)
       return res.status(400).send("Room does not exist")
     }
-
-    await Controller.create({ nickname, avatar, score, roomId });
-    res.send(`Jugador creado y asignado a sala ${roomId} con éxito!!`);
+    res.send(`Jugador creado y asignado a sala ${roomId} con éxito!!`, newPlayer);
   })
 );
 

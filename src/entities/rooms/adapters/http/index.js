@@ -87,8 +87,8 @@ router.post(
     
     if(roomExists.length === 0){
       await Controller.create({ code, isReady });
-      await playerController.create({nickname, avatar, score, roomId: code})
-      res.send(`Sala con codigo ${code} creada con éxito!!`);
+      const newPlayer = await playerController.create({nickname, avatar, score, roomId: code})
+      res.send(newPlayer);
     } else 
       {
         res.status(400).send("Room already exists")
