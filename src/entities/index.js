@@ -17,6 +17,6 @@ export const Sockets = (io, socket) => {
   // userSockets(io, socket); 
   roomSocket(io, socket)
   playerSocket(io, socket)
-  questionSocket(io,socket)
-  
+  questionSocket(io, socket)
+
 };
