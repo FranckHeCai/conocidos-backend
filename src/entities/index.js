@@ -5,6 +5,8 @@ import roomsRoutes from "./rooms/adapters/http"
 import roomSocket from "./rooms/adapters/socket"
 import playerSocket from "./players/adapters/socket"
 import questionSocket from "./questions/adapters/socket"
+import questionSocket from "./questions/adapters/socket"
+import playersSocket from "./players/adapters/socket"
 
 export const Routes = (app) => {
   userRoutes(app, "/players");
@@ -14,6 +16,8 @@ export const Routes = (app) => {
 };
 
 export const Sockets = (io, socket) => {
+  questionSocket(io, socket)
+  playersSocket(io, socket)
   // userSockets(io, socket); 
   roomSocket(io, socket)
   playerSocket(io, socket)
