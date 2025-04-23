@@ -4,9 +4,11 @@ import Controller from "../../controller";
 const StartSocketServer = (io, socket) => {
   console.log("StartSocketServer");
   socket.on(
-    "alguienTermino",
-    socketHandler(async (msg) => {
-      io.emit("alguienTermino", msg);
+    "PlayerJoined",
+    socketHandler(async (player) => {
+      console.log(player.roomId);
+      const allPlayers = await Controller.get({ roomId: player.roomId })
+      io.emit(`PlayerHasJoined`, allPlayers);
     })
   );
 

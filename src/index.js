@@ -22,9 +22,9 @@ ConnectDatabase(() => {
   Documentation(app);
   Middlewares(app, io);
   Routes(app);
-
+  console.log('aaaaaaaaaaaaaaaaaaa')
   io.on("connection", (socket) => {
-    console.log(88);
+    console.log('bbbbbbbbbbbbbbbbbbbbbbb');
     Sockets(io, socket);
   });
 

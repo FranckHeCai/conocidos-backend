@@ -4,9 +4,9 @@ import Controller from "../../controller";
 const StartSocketServer = (io, socket) => {
   console.log("StartSocketServer");
   socket.on(
-    "alguienTermino",
+    "addQuestion",
     socketHandler(async (msg) => {
-      io.emit("alguienTermino", msg);
+      io.emit("Added Question", msg.edad);
     })
   );
 
