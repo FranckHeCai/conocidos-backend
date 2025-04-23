@@ -2,11 +2,11 @@ import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
 
 const StartSocketServer = (io, socket) => {
-  console.log("StartSocketServer");
+  console.log("Question socket active");
   socket.on(
-    "addQuestion",
+    "alguienTermino",
     socketHandler(async (msg) => {
-      io.emit("Added Question", msg.edad);
+      io.emit("alguienTermino", msg);
     })
   );
 

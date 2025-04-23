@@ -22,7 +22,7 @@ ConnectDatabase(() => {
   Documentation(app);
   Middlewares(app, io);
   Routes(app);
-  console.log('aaaaaaaaaaaaaaaaaaa')
+
   io.on("connection", (socket) => {
     console.log("Connection on socket active");
     Sockets(io, socket);

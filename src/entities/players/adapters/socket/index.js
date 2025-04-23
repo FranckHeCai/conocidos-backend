@@ -2,13 +2,11 @@ import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
 
 const StartSocketServer = (io, socket) => {
-  console.log("StartSocketServer");
+  console.log("Player socket active");
   socket.on(
-    "PlayerJoined",
-    socketHandler(async (player) => {
-      console.log(player.roomId);
-      const allPlayers = await Controller.get({ roomId: player.roomId })
-      io.emit(`PlayerHasJoined`, allPlayers);
+    "alguienTermino",
+    socketHandler(async (msg) => {
+      io.emit("alguienTermino", msg);
     })
   );
 
