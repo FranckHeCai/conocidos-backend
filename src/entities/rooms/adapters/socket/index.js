@@ -1,14 +1,16 @@
 import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
+import playerController from "entities/players/controller"
 
 const StartSocketServer = (io, socket) => {
   console.log("Room socket active");
   socket.on(
     "get-players",
-    socketHandler(async () => {
-      const players = await Controller.get()
+    socketHandler(async (roomId) => {
+      // const players = await Controller.get()
+      const players = await playerController.get({roomId})
       console.log("backend fetched players", players);
-      io.emit('player-list', players)
+      io.emit('fetched-players', players)
     })
   );
   socket.on(
