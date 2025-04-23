@@ -3,7 +3,7 @@ import Controller from "../../controller";
 import { asyncHandler } from "@Application/middlewares/error-handler";
 // Para operaciones con acceso restringido, introduciremos un segundo parámetro que será la variable restrictedAccess
 import restrictedAccess from "@Application/middlewares/restricted-access";
-
+import roomController from "entities/rooms/controller"
 const router = express.Router();
 
 // router.get(
@@ -32,7 +32,11 @@ router.delete("/delete",
 
     // const data = await Controller.deleteById(playerId)
     const deleted = await Controller.delete({roomId, nickname})
-
+    const roomPlayers = await Controller.get({ roomId })
+    const roomEmpty = roomPlayers.length === 0
+    if(roomEmpty){
+      await roomController.delete({code : roomId})
+    }
     if (deleted === 0) {
       return res.status(404).send({ error: `Player with id ${nickname} not found` });
     }
@@ -90,7 +94,8 @@ router.post(
       console.log(roomExist)
       return res.status(400).send("Room does not exist")
     }
-    res.send(`Jugador creado y asignado a sala ${roomId} con éxito!!`, newPlayer);
+    const newPlayer = await Controller.create({nickname, avatar, score, roomId})
+    res.send(newPlayer);
   })
 );
 

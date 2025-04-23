@@ -80,13 +80,13 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { code, isReady, player },
+      body: { code, isReady, player, maxPlayers, maxQuestions },
     } = req;
     const {nickname, avatar, score, roomId} = player
     const roomExists = await Controller.get({code})
     
     if(roomExists.length === 0){
-      await Controller.create({ code, isReady });
+      await Controller.create({ code, isReady, maxPlayers, maxQuestions });
       const newPlayer = await playerController.create({nickname, avatar, score, roomId: code})
       res.send(newPlayer);
     } else 
