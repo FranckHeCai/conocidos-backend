@@ -9,7 +9,6 @@ const StartSocketServer = (io, socket) => {
     socketHandler(async (roomId) => {
       // const players = await Controller.get()
       const players = await playerController.get({roomId})
-      console.log("backend fetched players", players);
       io.emit('fetched-players', players)
     })
   );
