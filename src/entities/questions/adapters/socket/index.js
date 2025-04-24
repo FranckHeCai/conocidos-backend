@@ -1,12 +1,19 @@
 import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
 
+const shuffle = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+}
+
 const StartSocketServer = (io, socket) => {
   console.log("Question socket active");
   socket.on(
-    "alguienTermino",
-    socketHandler(async (msg) => {
-      io.emit("alguienTermino", msg);
+    "get-questions",
+    socketHandler(async (roomId) => {
+      const questions = await Controller.get({ roomId });
+      console.log(questions);
+      const shuffledQuestions = shuffle(questions);
+      io.emit("fetched-questions", shuffledQuestions);
     })
   );
 
