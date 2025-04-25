@@ -66,8 +66,8 @@ router.post(
     const {
       body: { question_text, roomId, playerId },
     } = req;
-    await Controller.create({ question_text, roomId, playerId });
-    res.send(`Pregunta del jugador ${playerId} añadida a sala ${roomId} con éxito!!`);
+    const newQuestion = await Controller.create({ question_text, roomId, playerId });
+    res.send(newQuestion);
   })
 );
 

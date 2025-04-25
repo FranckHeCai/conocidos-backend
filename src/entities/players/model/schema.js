@@ -9,6 +9,10 @@ export default db.define("players", {
     type: DataTypes.STRING,
     defaultValue: "zombie.png"
   },
+  isReady: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   score: {
     type: DataTypes.INTEGER,
     defaultValue: 0,

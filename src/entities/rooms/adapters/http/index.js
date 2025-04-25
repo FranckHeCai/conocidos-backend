@@ -88,11 +88,19 @@ router.post(
     if (roomExists.length === 0) {
       await Controller.create({ code, isReady, maxPlayers, maxQuestions });
       const newPlayer = await playerController.create({ nickname, avatar, score, roomId: code })
-      res.send(newPlayer);
-    } else {
-      res.status(400).send("Room already exists")
-    }
-  })
+      const { nickname, avatar, score, roomId } = player
+      const roomExists = await Controller.get({ code })
+
+      if (roomExists.length === 0) {
+        await Controller.create({ code, isReady, maxPlayers, maxQuestions });
+        const newPlayer = await playerController.create({ nickname, avatar, score, roomId: code })
+        res.send(newPlayer);
+      } else {
+        res.status(400).send("Room already exists")
+      }
+
+
+    })
 );
 
 export default (app, entityUrl) => app.use(entityUrl, router);

@@ -46,8 +46,8 @@ router.post(
     const {
       body: { answer_text, is_correct, questionId },
     } = req;
-    await Controller.create({ answer_text ,is_correct, questionId });
-    res.send(`Respuesta de pregunta ${questionId} creada con éxito!!`);
+    const newAnswer = await Controller.create({ answer_text ,is_correct, questionId });
+    res.send(newAnswer);
   })
 );
 
