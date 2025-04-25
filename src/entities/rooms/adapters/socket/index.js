@@ -44,15 +44,28 @@ const StartSocketServer = (io, socket) => {
   socket.on("playerIsReady", 
     socketHandler(async ({ roomId, playerId }) => {
       await playerController.updateById(playerId, {isReady: true})
+      const roomData = await Controller.get({code: roomId})
+      const maxPlayers = roomData[0].dataValues.maxQuestions
 
-      // Optionally notify others
       // io.to(roomId).emit("playerMarkedReady", { playerId });
-      const players = await playerController.get({roomId})
-      const allPlayersReady = players.every(player => player.isReady === true)
-      // Check if all players are ready
-      if (allPlayersReady) {
+      const data = await playerController.get({roomId})
+      const playersInRoom = data.length
+
+      console.log("players currently in room: ", playersInRoom)
+       const allPlayersReady = data.every(player => player.dataValues.isReady === true)
+
+
+      if (allPlayersReady && playersInRoom === maxPlayers) {
         io.to(roomId).emit("allPlayersReady"); // trigger the next step of the game
       }
+    })
+  );
+  socket.on("playerNotReady", 
+    socketHandler(async ({ roomId, playerId }) => {
+      await playerController.updateById(playerId, {isReady: false})
+      
+      // Optionally notify others
+      // io.to(roomId).emit("playerMarkedReady", { playerId });
     })
   );
 };
