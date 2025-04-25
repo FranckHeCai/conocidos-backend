@@ -1,22 +1,22 @@
 import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
-import { useState } from "react";
 
 const shuffle = (array) => {
   return array.sort(() => Math.random() - 0.5);
 }
 
-const [currentQuestion, setCurrentQuestion] = useState();
-
 const StartSocketServer = (io, socket) => {
   console.log("Question socket active");
   socket.on(
     "get-questions",
-    socketHandler(async (roomId) => {
+    socketHandler(async ({ obj }) => {
+
+      console.log(obj.roomId, obj.playerId)
+
       const questions = await Controller.get({ roomId });
-      console.log(questions);
-      const shuffledQuestions = shuffle(questions);
-      io.emit("fetched-questions", shuffledQuestions[0]);
+      const AllshuffledQuestions = shuffle(questions);
+      const FinalQuestions = AllshuffledQuestions.filter(questions => questions.playerId !== obj.playerId)
+      io.emit("fetched-questions", shuffledQuestions);
     })
   );
 

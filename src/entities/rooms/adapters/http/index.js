@@ -23,7 +23,7 @@ router.delete("/delete/:code",
       return res.status(400).send({ error: "Code is required" });
     }
 
-    const data = await Controller.delete({code})
+    const data = await Controller.delete({ code })
 
     if (data[0] === 0) {
       return res.status(404).send({ error: `Room with code ${code} not found` });
@@ -37,7 +37,7 @@ router.get(
   "/:roomId",
   asyncHandler(async (req, res) => {
     const { roomId } = req.params;
-    const data = await Controller.get({code: roomId});
+    const data = await Controller.get({ code: roomId });
     res.send(data);
   })
 );
@@ -64,7 +64,7 @@ router.put(
       return res.status(400).send({ error: "isReady must be a boolean" });
     }
 
-    const updatedRoom = await Controller.update( code , { isReady });
+    const updatedRoom = await Controller.update(code, { isReady });
 
     console.log(updatedRoom)
 
@@ -80,21 +80,18 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { code, isReady, player },
+      body: { code, isReady, player, maxPlayers, maxQuestions },
     } = req;
-    const {nickname, avatar, score, roomId} = player
-    const roomExists = await Controller.get({code})
-    
-    if(roomExists.length === 0){
-      await Controller.create({ code, isReady });
-      const newPlayer = await playerController.create({nickname, avatar, score, roomId: code})
-      res.send(newPlayer);
-    } else 
-      {
-        res.status(400).send("Room already exists")
-      }
+    const { nickname, avatar, score, roomId } = player
+    const roomExists = await Controller.get({ code })
 
-    
+    if (roomExists.length === 0) {
+      await Controller.create({ code, isReady, maxPlayers, maxQuestions });
+      const newPlayer = await playerController.create({ nickname, avatar, score, roomId: code })
+      res.send(newPlayer);
+    } else {
+      res.status(400).send("Room already exists")
+    }
   })
 );
 
