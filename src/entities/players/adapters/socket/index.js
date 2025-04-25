@@ -3,12 +3,7 @@ import Controller from "../../controller";
 
 const StartSocketServer = (io, socket) => {
   console.log("Player socket active");
-  socket.on(
-    "alguienTermino",
-    socketHandler(async (msg) => {
-      io.emit("alguienTermino", msg);
-    })
-  );
+
 
   socket.on(
     "addAlumnos",
