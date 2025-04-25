@@ -9,14 +9,12 @@ const StartSocketServer = (io, socket) => {
   console.log("Question socket active");
   socket.on(
     "get-questions",
-    socketHandler(async ({ obj }) => {
-
-      console.log(obj.roomId, obj.playerId)
-
+    socketHandler(async (obj) => {
+      const { roomId, playerId } = obj;
       const questions = await Controller.get({ roomId });
       const AllshuffledQuestions = shuffle(questions);
       const FinalQuestions = AllshuffledQuestions.filter(questions => questions.playerId !== obj.playerId)
-      io.emit("fetched-questions", shuffledQuestions);
+      io.emit("fetched-questions", AllshuffledQuestions);
     })
   );
 

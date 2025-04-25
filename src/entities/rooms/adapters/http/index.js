@@ -98,9 +98,8 @@ router.post(
       } else {
         res.status(400).send("Room already exists")
       }
-
-
-    })
+    }
+  })
 );
 
 export default (app, entityUrl) => app.use(entityUrl, router);
