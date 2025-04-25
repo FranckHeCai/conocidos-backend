@@ -11,10 +11,11 @@ const StartSocketServer = (io, socket) => {
     "get-questions",
     socketHandler(async (obj) => {
       const { roomId, playerId } = obj;
+      const convertedId = Number(playerId)
       const questions = await Controller.get({ roomId });
       const AllshuffledQuestions = shuffle(questions);
-      const FinalQuestions = AllshuffledQuestions.filter(questions => questions.playerId !== obj.playerId)
-      io.emit("fetched-questions", AllshuffledQuestions);
+      const FinalQuestions = AllshuffledQuestions.filter(questions => questions.playerId !== convertedId)
+      io.emit("fetched-questions", FinalQuestions);
     })
   );
 
