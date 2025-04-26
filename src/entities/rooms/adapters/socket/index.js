@@ -15,15 +15,12 @@ const StartSocketServer = (io, socket) => {
     "playerJoins",
     socketHandler(async (roomId) => {
       // const players = await Controller.get()
-
       socket.join(roomId)
-
       const players = await playerController.get({roomId})
 
       if (!gameState[roomId]) {
         gameState[roomId] = {
           players: new Set(players.map((player) => player.id)), // 
-          readyPlayers: new Set(),
           answered: new Set(),
         };
       }
@@ -37,6 +34,10 @@ const StartSocketServer = (io, socket) => {
 
       await playerController.deleteById(playerId)
       const players = await playerController.get({roomId})
+      if(players.length === 0){
+        await Controller.delete({code: roomId})
+      }
+
       io.to(roomId).emit("playerHasLeft", players);
     })
   );
@@ -54,8 +55,9 @@ const StartSocketServer = (io, socket) => {
       console.log("players currently in room: ", playersInRoom)
        const allPlayersReady = data.every(player => player.dataValues.isReady === true)
 
-
+      console.log('checking if all players are ready')
       if (allPlayersReady && playersInRoom === maxPlayers) {
+        console.log('all players ready')
         io.to(roomId).emit("allPlayersReady"); // trigger the next step of the game
       }
     })

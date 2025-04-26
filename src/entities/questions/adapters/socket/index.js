@@ -4,19 +4,13 @@ import Controller from "../../controller";
 const StartSocketServer = (io, socket) => {
   console.log("Question socket active");
   socket.on(
-    "alguienTermino",
-    socketHandler(async (msg) => {
-      io.emit("alguienTermino", msg);
+    "creating-questions",
+    socketHandler(async (roomId) => {
+      Controller.get({roomId})
+      io.emit("alguienTermino", roomId);
     })
   );
 
-  socket.on(
-    "addAlumnos",
-    socketHandler(async (msg) => {
-      const data = await Controller.getAll();
-      console.log("aaaaaaaaaaaaaaaa", data);
-    })
-  );
 };
 
 export default StartSocketServer;
