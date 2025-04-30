@@ -25,17 +25,17 @@ router.get(
 router.delete("/delete",
   asyncHandler(async (req, res) => {
     // const { playerId } = req.params;
-    const {roomId, nickname} = req.body
+    const { roomId, nickname } = req.body
     if (!nickname) {
       return res.status(400).send({ error: "nickname is required" });
     }
 
     // const data = await Controller.deleteById(playerId)
-    const deleted = await Controller.delete({roomId, nickname})
+    const deleted = await Controller.delete({ roomId, nickname })
     const roomPlayers = await Controller.get({ roomId })
     const roomEmpty = roomPlayers.length === 0
-    if(roomEmpty){
-      await roomController.delete({code : roomId})
+    if (roomEmpty) {
+      await roomController.delete({ code: roomId })
     }
     if (deleted === 0) {
       return res.status(404).send({ error: `Player with id ${nickname} not found` });
@@ -53,7 +53,7 @@ router.put("/update/:playerId",
       return res.status(400).send({ error: "playerId is required" });
     }
 
-    const data = await Controller.updatePlayer({ id:playerId }, updateData);
+    const data = await Controller.updatePlayer({ id: playerId }, updateData);
 
     if (data[0] === 0) {
       return res.status(404).send({ error: `Player with id ${playerId} not found` });
@@ -86,15 +86,15 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      body: { nickname, avatar, score, roomId },
+      body: { nickname, avatar, isReady, score, roomId },
     } = req;
 
     const roomExist = await Controller.getRoom(roomId)
-    if(roomExist.length === 0){
+    if (roomExist.length === 0) {
       console.log(roomExist)
       return res.status(400).send("Room does not exist")
     }
-    const newPlayer = await Controller.create({nickname, avatar, score, roomId})
+    const newPlayer = await Controller.create({ nickname, avatar, score, roomId })
     res.send(newPlayer);
   })
 );

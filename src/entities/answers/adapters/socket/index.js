@@ -1,12 +1,15 @@
 import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
 
+
 const StartSocketServer = (io, socket) => {
   console.log("StartSocketServer");
   socket.on(
-    "alguienTermino",
-    socketHandler(async (msg) => {
-      io.emit("alguienTermino", msg);
+    "get-answers",
+    socketHandler(async (questionId) => {
+      const answers = await Controller.get({ questionId });
+      console.log("LAS FAKIN RESPUESTAAAAAAAAAAAAAAAAAAAAS", answers);
+      io.emit("fetched-answers", answers);
     })
   );
 
