@@ -5,7 +5,6 @@ const GenericModel = Model => ({
         return Model.create(data);
     },
     get(conditions) {
-        console.log(11111111111, conditions)
         return Model.findAll(conditions ? { where: conditions } : {});
     },
     getById(id) {

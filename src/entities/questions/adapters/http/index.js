@@ -14,6 +14,10 @@ const router = express.Router();
 //   })
 // );
 
+const shuffle = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+}
+
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -42,9 +46,10 @@ router.get(
 );
 
 router.get(
-  "/room/:roomId",
+  "/room/:roomId/:playerId",
   asyncHandler(async (req, res) => {
-    const { roomId } = req.params;
+    const { roomId, playerId } = req.params;
+    const convertedId = Number(playerId)
 
     if (!roomId) {
       return res.status(400).send({ error: "roomId is required" });
@@ -55,8 +60,10 @@ router.get(
     if (!data || data.length === 0) {
       return res.status(404).send({ error: "No questions found for the given roomId" });
     }
+    const shuffledQuestions = shuffle(data);
+    const finalQuestions = shuffledQuestions.filter(questions => questions.playerId !== convertedId)
 
-    res.send(data);
+    res.send(finalQuestions);
   })
 );
 
