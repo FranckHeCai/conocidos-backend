@@ -59,7 +59,7 @@ router.put("/update/:playerId",
       return res.status(404).send({ error: `Player with id ${playerId} not found` });
     }
 
-    res.send({ message: `Player with id ${playerId} updated successfully` });
+    res.send(data);
   })
 )
 
