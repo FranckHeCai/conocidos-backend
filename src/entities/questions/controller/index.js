@@ -16,6 +16,9 @@ const Controller = {
   deleteById(id) {
     return Model.deleteById(id);
   },
+  delete(roomId){
+    return Model.delete(roomId)
+  },
   getAnswers(questionId) {
     return Model.getAnswers(questionId)
   }

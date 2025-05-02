@@ -70,6 +70,12 @@ const StartSocketServer = (io, socket) => {
       // io.to(roomId).emit("playerMarkedReady", { playerId });
     })
   );
+  socket.on("finishGame", 
+    socketHandler(async (roomId ) => {
+      await Controller.delete({code: roomId})
+      io.to(roomId).emit("gameFinished");
+    })
+  );
 };
 
 export default StartSocketServer;
