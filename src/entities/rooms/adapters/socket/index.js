@@ -76,6 +76,16 @@ const StartSocketServer = (io, socket) => {
       io.to(roomId).emit("gameFinished");
     })
   );
+
+  socket.on("room-settings-changed", 
+    socketHandler(async (obj) => {
+      const { roomId, room } = obj
+      console.log(roomId, room)
+      const code = roomId
+      await Controller.update(code, room)
+      io.to(roomId).emit("room-settings-changed");
+    })
+  );
 };
 
 export default StartSocketServer;
