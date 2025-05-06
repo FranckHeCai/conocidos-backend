@@ -22,6 +22,15 @@ router.get(
   })
 );
 
+router.get(
+  "/nickname/:id",
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const data = await Controller.getById(id);
+    res.send(data);
+  })
+);
+
 router.delete("/delete",
   asyncHandler(async (req, res) => {
     // const { playerId } = req.params;
