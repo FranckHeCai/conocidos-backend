@@ -82,12 +82,12 @@ router.post(
     const {
       body: { code, isReady, player, maxPlayers, maxQuestions },
     } = req;
-    const { nickname, avatar, score } = player
+    const { nickname, avatar, score, isHost } = player
     const roomExists = await Controller.get({ code })
 
     if (roomExists.length === 0) {
       await Controller.create({ code, isReady, maxPlayers, maxQuestions });
-      const newPlayer = await playerController.create({ nickname, avatar, score, roomId: code })
+      const newPlayer = await playerController.create({ nickname, avatar, score, roomId: code, isHost })
       res.send(newPlayer);
     } else {
       res.status(400).send("Room already exists")
