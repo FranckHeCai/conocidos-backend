@@ -6,10 +6,6 @@ export default db.define("rooms", {
     allowNull: false,
     unique: true
   },
-  isReady: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
-  },
   maxPlayers: DataTypes.INTEGER,
   maxQuestions: DataTypes.INTEGER
 });

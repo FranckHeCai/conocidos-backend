@@ -7,9 +7,13 @@ export default db.define("players", {
   },
   avatar: {
     type: DataTypes.STRING,
-    defaultValue: "zombie.png"
+    defaultValue: "cat"
   },
   isReady: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  isHost: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
