@@ -1,11 +1,11 @@
-import userRoutes from "./players/adapters/http/index.js";
-import questionRoutes from "./questions/adapters/http/index.js"
-import answersRoutes from "./answers/adapters/http/index.js"
-import roomsRoutes from "./rooms/adapters/http/index.js"
-import roomSocket from "./rooms/adapters/socket/index.js"
-import playerSocket from "./players/adapters/socket/index.js"
-import questionSocket from "./questions/adapters/socket/index.js"
-import answersSocket from "./answers/adapters/socket/index.js"
+import userRoutes from "./players/adapters/http";
+import questionRoutes from "./questions/adapters/http"
+import answersRoutes from "./answers/adapters/http"
+import roomsRoutes from "./rooms/adapters/http"
+import roomSocket from "./rooms/adapters/socket"
+import playerSocket from "./players/adapters/socket"
+import questionSocket from "./questions/adapters/socket"
+import answersSocket from "./answers/adapters/socket"
 
 export const Routes = (app) => {
   userRoutes(app, "/players");
