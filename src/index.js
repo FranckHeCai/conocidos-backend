@@ -7,7 +7,7 @@ import waitPort from "wait-port";
 // Load environment variables from .env file
 dotenv.config();
 
-import { config } from "application/config/sockets";
+import { config } from "@Application/config/sockets";
 import Middlewares from "./application/middlewares";
 import { Routes, Sockets } from "./entities";
 import Documentation from "./application/documentation";
