@@ -32,3 +32,5 @@ ConnectDatabase(() => {
     console.log(`Server listening to http://localhost:${port}`);
   });
 });
+
+export default app
