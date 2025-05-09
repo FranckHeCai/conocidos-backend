@@ -1,9 +1,10 @@
 import express from "express";
-import Controller from "../../controller";
-import { asyncHandler } from "@Application/middlewares/error-handler";
+import Controller from "../../controller/index.js";
+import { asyncHandler } from "../../../../application/middlewares/error-handler.js";
 // Para operaciones con acceso restringido, introduciremos un segundo parámetro que será la variable restrictedAccess
-import restrictedAccess from "@Application/middlewares/restricted-access";
-import roomController from "entities/rooms/controller"
+// import restrictedAccess from "@Application/middlewares/restricted-access.js";
+// import roomController from "entities/rooms/controller/index.js"
+import roomController from "../../../rooms/controller/index.js"
 const router = express.Router();
 
 // router.get(

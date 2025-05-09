@@ -1,5 +1,6 @@
-import { socketHandler } from "@Application/middlewares/error-handler";
-import Controller from "../../controller";
+// import { socketHandler } from "@Application/middlewares/error-handler.js";
+import { socketHandler } from "../../../../application/middlewares/error-handler.js";
+import Controller from "../../controller/index.js";
 
 const shuffle = (array) => {
   return array.sort(() => Math.random() - 0.5);

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { getKey } from './secret';
+import { getKey } from './secret.js';
 
 export const verifyToken = token => new Promise(((resolve, reject) => {
     jwt.verify(token, getKey, (err, decoded) => err || !decoded

@@ -7,11 +7,11 @@ import waitPort from "wait-port";
 // Load environment variables from .env file
 dotenv.config();
 
-import { config } from "@Application/config/sockets";
-import Middlewares from "./application/middlewares";
-import { Routes, Sockets } from "./entities";
-import Documentation from "./application/documentation";
-import ConnectDatabase from "./application/database";
+import { config } from "./application/config/sockets.js"
+import Middlewares from "./application/middlewares/index.js";
+import { Routes, Sockets } from "./entities/index.js";
+import Documentation from "./application/documentation/index.js";
+import ConnectDatabase from "./application/database/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;

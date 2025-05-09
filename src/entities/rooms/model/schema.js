@@ -1,4 +1,6 @@
-import { db, DataTypes } from "@Application/database";
+// import { db, DataTypes } from "@Application/database/index.js";
+// import { db, DataTypes } from "application/database/index.js";
+import { db, DataTypes } from "../../../application/database/index.js";
 
 export default db.define("rooms", {
   code: {

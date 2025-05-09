@@ -5,7 +5,8 @@
     "baseUrl": "./src",
     "allowJs": true,
     "paths": {
-      "@Application/*": ["application/*"]
+      "@Application/*": ["application/*"],
+      "@Entities/*": ["entities/*"]
     },
     "module": "CommonJS",
     "moduleResolution": "Node",
