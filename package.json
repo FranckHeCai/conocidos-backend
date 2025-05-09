@@ -4,7 +4,8 @@
   "description": "Node example",
   "scripts": {
     "dev": "nodemon --signal SIGKILL",
-    "start": "ts-node -r tsconfig-paths/register src/index.js"
+    "start": "ts-node -r tsconfig-paths/register src/index.js",
+    "build": "echo"
   },
   "_moduleAliases": {
     "@Application": "src/application",
