@@ -10,8 +10,15 @@ LABEL fly_launch_runtime="Node.js"
 WORKDIR /app
 
 # Set production environment
-ENV NODE_ENV="production"
+ENV 
+NODE_ENV="production"
+DB_HOST = hl1339.dinaserver.com
+DB_USER = berlin1borrame
+DB_PASSWORD = Joequeroll0.
+DB_NAME = berlin1borrame
+DB_FORCE_CLEAN = false
 
+PORT = 3000
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
