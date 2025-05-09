@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for conocidos-backend on 2025-05-09T17:19:49Z
+# fly.toml app configuration file generated for conocidos-backend-a4czqw on 2025-05-09T18:05:18Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'conocidos-backend'
+app = 'conocidos-backend-a4czqw'
 primary_region = 'lhr'
 
 [build]
