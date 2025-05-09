@@ -10,7 +10,7 @@
     "@Application": "src/application",
     "@Entities": "src/entities"
   },
-  "author": "Pablo Monteserín",
+  "author": "Franck Cai",
   "license": "ISC",
   "dependencies": {
     "auth0": "^4.20.0",
