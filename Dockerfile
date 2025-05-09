@@ -11,11 +11,6 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV="production"
-ENV DB_HOST = hl1339.dinaserver.com
-ENV DB_USER = berlin1borrame
-ENV DB_PASSWORD = Joequeroll0.
-ENV DB_NAME = berlin1borrame
-ENV DB_FORCE_CLEAN = false
 
 ENV PORT = 3000
 
