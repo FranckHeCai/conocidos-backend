@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import withSockets from './with-sockets.js';
+import withSockets from './with-sockets';
 
 const Middlewares = (app, io) => {
     app.use(express.urlencoded({extended: true}));

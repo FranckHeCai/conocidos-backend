@@ -1,8 +1,6 @@
-// import { socketHandler } from "@Application/middlewares/error-handler.js";
-import { socketHandler } from "../../../../application/middlewares/error-handler.js";
-import Controller from "../../controller/index.js";
-// import playerController from "entities/players/controller/index.js"
-import playerController from "../../../../entities/players/controller/index.js"
+import { socketHandler } from "@Application/middlewares/error-handler";
+import Controller from "../../controller";
+import playerController from "entities/players/controller"
 
 let gameState = {
   // roomId: {

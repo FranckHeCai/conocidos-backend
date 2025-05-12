@@ -1,12 +1,8 @@
-// import GenericModel from "@Application/repository/generic-model.js";
-import GenericModel from "../../../application/repository/generic-model.js";
-import Schema from "./schema.js";
-// import roomModel from "entities/rooms/model/schema.js"
-import roomModel from "../../../entities/rooms/model/schema.js"
-// import questionModel from "entities/questions/model/schema.js"
-import questionModel from "../../../entities/questions/model/schema.js"
-// import answerModel from "entities/answers/model/schema.js"
-import answerModel from "../../../entities/answers/model/schema.js"
+import GenericModel from "@Application/repository/generic-model";
+import Schema from "./schema";
+import roomModel from "entities/rooms/model/schema"
+import questionModel from "entities/questions/model/schema"
+import answerModel from "entities/answers/model/schema"
 
 Schema.associate = () =>{
   Schema.belongsTo(roomModel, {

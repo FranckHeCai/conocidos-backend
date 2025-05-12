@@ -1,6 +1,6 @@
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import { swaggerConfig } from "../config/swagger.js";
+import { swaggerConfig } from "../config/swagger";
 
 const Documentation = (app) => {
   // JSON of specs

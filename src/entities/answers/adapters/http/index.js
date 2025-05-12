@@ -1,10 +1,8 @@
 import express from "express";
-import Controller from "../../controller/index.js";
-// import { asyncHandler } from "@Application/middlewares/error-handler.js";
-// import { asyncHandler } from "application/middlewares/error-handler.js";
-import { asyncHandler } from "../../../../application/middlewares/error-handler.js";
+import Controller from "../../controller";
+import { asyncHandler } from "@Application/middlewares/error-handler";
 // Para operaciones con acceso restringido, introduciremos un segundo parámetro que será la variable restrictedAccess
-// import restrictedAccess from "@Application/middlewares/restricted-access.js";
+import restrictedAccess from "@Application/middlewares/restricted-access";
 
 const router = express.Router();
 

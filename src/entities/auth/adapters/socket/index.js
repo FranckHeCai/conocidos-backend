@@ -2,14 +2,12 @@ import { socketHandler } from "@Application/middlewares/error-handler";
 import Controller from "../../controller";
 
 const StartSocketServer = (io, socket) => {
-  console.log("Player socket active");
-
-
   socket.on(
-    "addAlumnos",
+    "studentSuscribeOrLogInClassroom",
     socketHandler(async (msg) => {
-      const data = await Controller.getAll();
-      console.log("aaaaaaaaaaaaaaaa", data);
+      console.log("aaaaaaaaaaaaaaaa", msg);
+
+      io.emit("studentSuscribeOrLogInClassroom", msg);
     })
   );
 };

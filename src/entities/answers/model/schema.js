@@ -1,5 +1,4 @@
-// import { db, DataTypes } from "@Application/database/index.js";
-import { db, DataTypes } from "../../../application/database/index.js";
+import { db, DataTypes } from "@Application/database";
 
 export default db.define("answers", {
   answer_text: {

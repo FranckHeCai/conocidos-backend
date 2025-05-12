@@ -4,14 +4,9 @@
   "description": "Node example",
   "scripts": {
     "dev": "nodemon --signal SIGKILL",
-    "start": "ts-node -r tsconfig-paths/register src/index.js",
-    "build": "echo"
+    "start": "ts-node -r tsconfig-paths/register src/index.js"
   },
-  "_moduleAliases": {
-    "@Application": "src/application",
-    "@Entities": "src/entities"
-  },
-  "author": "Franck Cai",
+  "author": "Pablo Monteserín",
   "license": "ISC",
   "dependencies": {
     "auth0": "^4.20.0",
@@ -22,7 +17,6 @@
     "jsonwebtoken": "^9.0.2",
     "jwks-rsa": "3.2.0",
     "kill-port": "^2.0.1",
-    "module-alias": "^2.2.3",
     "mysql2": "^3.14.0",
     "nodemon": "^3.1.9",
     "sequelize": "^6.37.6",

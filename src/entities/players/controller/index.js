@@ -1,7 +1,6 @@
-import Model from "../model/index.js";
+import Model from "../model";
 
-// import roomController from "entities/rooms/controller/index.js"
-import roomController from "../../../entities/rooms/controller/index.js"
+import roomController from "entities/rooms/controller"
 
 const Controller = {
   get(conditions) {
